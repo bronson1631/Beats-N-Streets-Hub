@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaView, ActivityIndicator, View } from 'react-native';
+import { SafeAreaView, ActivityIndicator } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import SignInScreen from './screens/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen';
+import MapScreen from './screens/MapScreen';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const Stack = createNativeStackNavigator();
@@ -23,7 +24,10 @@ function AppRoutes() {
   return (
     <Stack.Navigator>
       {user ? (
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <>
+          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Map" component={MapScreen} options={{ title: 'Map' }} />
+        </>
       ) : (
         <>
           <Stack.Screen name="SignIn" component={SignInScreen} options={{ title: 'Sign in' }} />
