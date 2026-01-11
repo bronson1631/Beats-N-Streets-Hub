@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, Platform } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import Constants from 'expo-constants';
+import React, { useState } from 'react';
+import { View, ActivityIndicator } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
 // Simple mock data for events and artists — replace with Supabase queries later
 const mockPlaces = [
@@ -29,9 +28,8 @@ const mockPlaces = [
 ];
 
 export default function MapScreen({ navigation }: any) {
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
-  // center region around first marker
   const initialRegion = {
     latitude: mockPlaces[0].latitude,
     longitude: mockPlaces[0].longitude,
@@ -41,12 +39,10 @@ export default function MapScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1 }}>
-      <MapView
-        style={{ flex: 1 }}
-        provider={PROVIDER_GOOGLE}
-        initialRegion={initialRegion}
-        showsUserLocation={true}
-      >
+      {/* Note: no provider prop so the map can render in Expo Go without embedded native keys.
+          If you later add a Google Maps API key for Android, we can set provider={PROVIDER_GOOGLE}
+          and add the key to app.json android config. */}
+      <MapView style={{ flex: 1 }} initialRegion={initialRegion} showsUserLocation={true}>
         {mockPlaces.map((p) => (
           <Marker
             key={p.id}
@@ -57,6 +53,7 @@ export default function MapScreen({ navigation }: any) {
           />
         ))}
       </MapView>
+
       {loading && (
         <View style={{ position: 'absolute', top: 20, left: 0, right: 0, alignItems: 'center' }}>
           <ActivityIndicator />

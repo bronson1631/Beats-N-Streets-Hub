@@ -28,6 +28,9 @@ export default function SignInScreen({ navigation }: any) {
       <Button title={loading ? 'Signing in...' : 'Sign in'} onPress={onSubmit} disabled={loading} />
       <View style={{ height: 12 }} />
       <Button title="Create account" onPress={() => navigation.navigate('SignUp')} />
+      <View style={{ height: 12 }} />
+      {/* DEMO: skip auth for quick prototype */}
+      <Button title="Continue as demo" onPress={() => navigation.replace('Home')} />
     </View>
   );
 }
