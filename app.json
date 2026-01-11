@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Beats N Streets Hub",
+    "slug": "beats-n-streets-hub",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "sdkVersion": "48.0.0",
+    "extra": {
+      "supabaseUrl": "__SUPABASE_URL__",
+      "supabaseAnonKey": "__SUPABASE_ANON_KEY__",
+      "stripePublishableKey": "__STRIPE_PUBLISHABLE_KEY__",
+      "mapsApiKey": "__MAPS_API_KEY__"
+    }
+  }
+}
